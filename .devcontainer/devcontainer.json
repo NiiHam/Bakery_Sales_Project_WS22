@@ -21,7 +21,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": ["python -m pip install --root-user-action=ignore -r requirements.txt"],
+	"postCreateCommand": "python -m pip install --root-user-action=ignore -r requirements.txt",
 	"customizations": {
 		"vscode": {
 			"extensions": [

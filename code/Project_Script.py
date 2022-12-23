@@ -64,8 +64,8 @@ if IN_COLAB:
   
   # Change to the directory
   print("\nColab: Changing directory to ", drive_root)
-  %cd $drive_root
-  !pwd
+#   %cd $drive_root
+#   !pwd
 
 # %% [markdown]
 # This is example code for the bakery data. You DO NOT need to use this.
@@ -194,8 +194,8 @@ df_standard_
 df_standard_.to_csv(os.path.join(DATA_FOLDER, 'combined_dataset.csv'))
 
 # %% [markdown]
-# $cd /usr/local/lib/python3.8/dist-packages/scaleogram# cws.py
-# root@c2c0a9bd9691:/usr/local/lib/python3.8/dist-packages/scaleogram# nano cws.py
+# $cd /usr/local/lib/python3.8/dist-packages/scaleogram
+# $nano cws.py
 # 
 # Correcting this error is easy, we can access to the cws.py in the package, and find this dictionary : COI_DEFAULTS = { 'alpha': '0.5', 'hatch':'/', } , then change '0.5' to 0.5, now the problem is resolved
 
@@ -606,8 +606,6 @@ text = ax.annotate("quarter", xy=(365*1, 90), xytext=(365*2, 90),
 text = ax.annotate("increase in\nvariations *amplitude*", xy=(365*5, 200), xytext=(365*3, 200), 
                    bbox=bbox2, arrowprops=arrowprops2)
 
-
-
 # %%
 fig = plt.figure(figsize=(20, 5))
 lines = plt.plot(Wind_Speed.index, Wind_Speed.values, '-')
@@ -647,8 +645,6 @@ text = ax.annotate("strong mid year\neffect", xy=(365*3.5, 8), xytext=(365*3, 25
 text = ax.annotate("increase in\nvariations *amplitude*", xy=(365*5, 200), xytext=(365*3, 200), 
                    bbox=bbox2, arrowprops=arrowprops2)
 
-
-
 # %%
 fig = plt.figure(figsize=(20, 5))
 lines = plt.plot(Weather_Code.index, Weather_Code.values, '-')
@@ -687,8 +683,6 @@ text = ax.annotate("strong mid year\neffect", xy=(365*3.5, 8), xytext=(365*3, 25
                    bbox=bbox2, arrowprops=arrowprops2)                 
 text = ax.annotate("increase in\nvariations *amplitude*", xy=(365*5, 200), xytext=(365*3, 200), 
                    bbox=bbox2, arrowprops=arrowprops2)
-
-
 
 # %%
 fig = plt.figure(figsize=(20, 5))
@@ -1009,7 +1003,6 @@ print('x_train shape:', x_train.shape)
 print('y_train shape:', y_train.shape)
 print('x_test shape:', x_test.shape)
 print('y_test shape:', y_test.shape)
-
 
 # %% [markdown]
 # ### Visualize Time Shifted Targets
@@ -1376,7 +1369,7 @@ for dirpath in dirpaths:
 callback_tensorboard = TensorBoard(log_dir=r'./../data/model/TensorBoard',
                                    histogram_freq=1,
                                    write_graph=True)
-                                #    profile_batch = '500,520')
+                                #  profile_batch = '500,520')
 
 # %% [markdown]
 # This callback reduces the learning-rate for the optimizer if the validation-loss has not improved since the last epoch (as indicated by `patience=10`). The learning-rate will be reduced by multiplying it with the given factor. We set a start learning-rate of 1e-3 above, so multiplying it by 0.95 gives a learning-rate of 9.5e-4. We don't want the learning-rate to go any lower 1e-5
@@ -1388,8 +1381,8 @@ callback_reduce_lr = ReduceLROnPlateau(monitor='val_loss',
                                        patience=10,
                                        verbose=1)    
 
-# %% [markdown]
-# %reload_ext tensorboard
+# %%
+# !tensorboard --logdir logs/ --bind_all --port=8080
 
 # %%
 callbacks = [callback_early_stopping,
@@ -1535,12 +1528,11 @@ with tf.device('/device:GPU:0'):
         mape = tf.keras.losses.MeanAbsolutePercentageError()
         input_names = ['G1_Sales', 'G2_Sales', 'G3_Sales', 'G4_Sales', 'G5_Sales', 'G6_Sales', 'Cloudiness', 'Temperature', 'Wind Speed', 'Weather Code', 'KielerWoche']
         target_names = ['G1_Sales', 'G2_Sales', 'G3_Sales', 'G4_Sales', 'G5_Sales', 'G6_Sales']
-        sequence_length=30
+        sequence_length = 30
 
         x_true = np.zeros(shape=(test_length,num_x_signals))
         y_pred = np.zeros(shape=(test_length,num_y_signals))
         y_true = np.zeros(shape=(test_length,num_y_signals))
-
 
         for i in tqdm_notebook(range(start_idx,start_idx+test_length), desc='Loop 1'):
                 x = x_test[i:i+sequence_length].reshape(1,sequence_length,-1).reshape(1,sequence_length,-1)
@@ -1551,7 +1543,6 @@ with tf.device('/device:GPU:0'):
 
         # y_true = y_scaler.inverse_transform(y_true[:,:])   
         # y_pred = y_scaler.inverse_transform(y_pred[:,:])
-
 
 
 for signal_ in tqdm_notebook(range(len(target_names)), desc='Loop 1'):
