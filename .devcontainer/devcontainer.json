@@ -5,7 +5,7 @@
 	// "image": "nvcr.io/nvidia/tensorflow:22.11-tf2-py3",
 	"image": "a88317ae0b1b040d71ddc3a7801f57049d46b8d0448c7caaa2bc14ab6fff788a",
 	"features": { },
-	"runArgs": ["--gpus", "all", "--ipc=host", "--ulimit", "memlock=-1", "--ulimit", "stack=67108864"],
+	"runArgs": ["--gpus", "all", "--ipc=host", "--ulimit", "memlock=-1", "--ulimit", "stack=67108864", "-p=8080:8080"],
 
 	// "build": { 
     //     "context": "..",
@@ -22,7 +22,7 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip3 install --user -r requirements.txt",
-	"postCreateCommand": "python -m pip install --root-user-action=ignore -r requirements.txt",
+	"postCreateCommand": ["python -m pip install --root-user-action=ignore -r requirements.txt", "tensorboard --logdir logs/ --bind_all --port=8080"],
 	"customizations": {
 		"vscode": {
 			"extensions": [
