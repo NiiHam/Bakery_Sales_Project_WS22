@@ -21,8 +21,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
-	"postCreateCommand": ["python -m pip install --root-user-action=ignore -r requirements.txt", "tensorboard --logdir logs/ --bind_all --port=8080"],
+	"postCreateCommand": ["python -m pip install --root-user-action=ignore -r requirements.txt"],
 	"customizations": {
 		"vscode": {
 			"extensions": [
