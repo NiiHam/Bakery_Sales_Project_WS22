@@ -5,4 +5,5 @@ pandas
 seaborn 
 scaleogram
 pywavelets
-tensorflow-addons 
+tensorflow-addons
+google
