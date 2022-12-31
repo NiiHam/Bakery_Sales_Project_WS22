@@ -21,7 +21,7 @@
 	"forwardPorts": ["8080:80"],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "python -m pip install --root-user-action=ignore -r requirements.txt &&  cp -f ./resources/cws.py /usr/local/lib/python3.8/dist-packages/scaleogram && tensorboard --logdir=data/model/TensorBoard --port 8088",
+	"postCreateCommand": "python -m pip install --root-user-action=ignore -r requirements.txt && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64 && cp -f ./resources/cws.py /usr/local/lib/python3.8/dist-packages/scaleogram && tensorboard --logdir=data/model/TensorBoard --port 8088",
 	"customizations": {
 		"vscode": {
 			"extensions": [
