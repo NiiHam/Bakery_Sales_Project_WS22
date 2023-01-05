@@ -8,3 +8,4 @@ pywavelets
 tensorflow-addons
 google
 tensorboard-plugin-profile
+holidays
